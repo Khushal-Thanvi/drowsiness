@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Drowsiness Detection System</title>
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --dark-bg: #0a0a1f;
+            --panel-bg: rgba(16, 16, 37, 0.9);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a1f 0%, #1a1a3f 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        .subtitle {
+            color: #888;
+            margin-top: 10px;
+        }
+
+        .video-container {
+            background: var(--panel-bg);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2),
+                        inset 0 0 20px rgba(0, 243, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--neon-blue), transparent);
+            animation: scan 2s linear infinite;
+        }
+
+        .video-feed {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .status-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 243, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .status-item {
+            text-align: center;
+        }
+
+        .status-label {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(1000%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Drowsiness Detection System</h1>
+            <div class="subtitle">Advanced Real-Time Monitoring</div>
+        </div>
+        
+        <div class="video-container">
+            <img class="video-feed" src="{{ url_for('video_feed') }}" alt="Video feed">
+        </div>
+
+        <div class="status-panel">
+            <div class="status-item">
+                <div class="status-label">System Status</div>
+                <div>Active</div>
+            </div>
+            <div class="status-item">
+                <div class="status-label">Detection Mode</div>
+                <div>Real-Time</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
